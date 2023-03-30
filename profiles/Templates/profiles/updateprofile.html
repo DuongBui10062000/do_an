@@ -1,0 +1,47 @@
+{% extends 'WebHealth/base.html' %}
+	{% block title %}
+		Cập Nhập Thông Tin
+	{% endblock %}
+	{% block content %}
+	<div class="container">
+		<div class="row">
+			<div style="width: 100%;">
+				<h1>Cập nhập thông tin của bạn</h1>
+			</div>
+			<div class="card mt-4" >
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+				    	<form method="post">
+							{% csrf_token %}
+							<div class="mb-3">
+							  <label for="exampleFormControlInput1" class="form-label">Họ Tên</label>
+							  <div>
+							  	{{ form.full_name }}
+							  </div>
+							</div>
+							<div class="mb-3">
+							  <label for="exampleFormControlInput1" class="form-label">Địa Chỉ</label>
+							  <div>
+							  	{{ form.address }}
+							  </div>
+							</div>
+							<div class="mb-3">
+							  <label for="exampleFormControlInput1" class="form-label">Năm Sinh</label>
+							  <div>
+							  	{{ form.year_birth }}
+							  </div>
+							</div><div class="mb-3">
+							  <label for="exampleFormControlInput1" class="form-label">Mục Tiêu</label>
+							  <div>
+							  	{{ form.about }}
+							  </div>
+							</div>
+							<button type="submit" class="btn btn-primary" name="update">Update</button>
+							<button type="submit" class="btn btn-danger" name="update">Thoát</button>
+						</form>
+			    	</li>
+			  	</ul>
+			</div>
+		</div>
+	</div>
+	{% endblock %}

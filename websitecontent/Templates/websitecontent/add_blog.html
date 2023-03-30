@@ -1,0 +1,14 @@
+{% extends 'WebHealth/base.html' %}
+	{% block title %}
+		Tạo Blogs
+	{% endblock %}
+	{% block content %}
+	<div class="container">
+		<form action="{% url 'nameAddBlogs' %}" method="post" enctype="multipart/form-data">
+			<h3>TẠO BLOG</h3>
+			{% csrf_token %}
+			{{ fm.as_p }}
+			<button type="submit" class="btn btn-outline-primary mt-3">ADD</button>
+		</form>
+	</div>
+	{% endblock %}

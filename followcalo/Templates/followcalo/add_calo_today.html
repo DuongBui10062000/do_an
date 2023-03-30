@@ -1,0 +1,14 @@
+{% extends 'WebHealth/base.html' %}
+	{% block title %}
+		Calo Hôm Nay
+	{% endblock %}
+	{% block content %}
+	<div class="container">
+		<form action="{% url 'nameAddCaloToday' %}" method="post">
+			<h3>CALO NGÀY HÔM NAY CỦA BẠN</h3>
+			{% csrf_token %}
+			{{ fm }}
+			<button type="submit" class="btn btn-outline-primary mt-3">ADD</button>
+		</form>
+	</div>
+	{% endblock %}

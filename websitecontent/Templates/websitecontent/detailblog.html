@@ -1,0 +1,21 @@
+{% extends 'WebHealth/base.html' %}
+
+	{% block title %}
+		Blog Detail
+	{% endblock %}
+
+	{% block content %}
+		<div class="container">
+			<div class="container pt-3">
+				<h1>{{ blog_id.name }}</h1>
+				<h5>Author: {{ blog_id.author }}</h5>
+				<p><strong>{{ blog_id.description }}</strong></p>
+			</div>
+			<div>
+				<img src="{{ blog_id.picture.url }}" class="rounded mx-auto d-block" alt="" width="500" height="300">
+			</div>
+			<div>
+				<p>{{ blog_id.postcontent }}</p>
+			</div>
+		</div>
+	{% endblock %}

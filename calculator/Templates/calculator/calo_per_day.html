@@ -1,0 +1,65 @@
+{% extends 'WebHealth/base.html' %}
+
+	{% block title %}
+		Calo Cần Thiết
+	{% endblock %}
+		
+	{% block content %}
+	<div class="container mt-4">
+		<div>
+			<h1>Lượng calo cần thiết mỗi ngày</h1>
+		</div>
+		<div>
+			<form class="cal mt-4" method="post">
+			{% csrf_token %}
+				<div class="row mb-3">
+					<label for="inputNameFood" class="col-sm-2 col-form-label">Giới tính của bạn là</label>
+					<div class="col-sm-10">
+						<input type="radio" class="btn-check" value="Female" name="sex" id="Nữ" autocomplete="off" required >
+						<label class="btn btn-outline-primary" for="Nữ">
+							<svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" fill="none" viewBox="0 0 21 20">
+								<path fill="#FE9DC2" d="M13.748 15.546h-1.503a.321.321 0 01-.321-.322v-3.7H9.577v3.7a.321.321 0 01-.322.322H7.753a.321.321 0 00-.321.321v1.704c0 .178.144.322.321.322h1.502c.178 0 .322.144.322.321v1.465c0 .178.144.321.321.321h1.704a.321.321 0 00.322-.321v-1.465c0-.177.144-.321.321-.321h1.503a.321.321 0 00.321-.322v-1.704a.322.322 0 00-.321-.321z"></path><path fill="#FC488D" d="M9.576 11.523v2.151a7.466 7.466 0 002.347 0v-2.15H9.576z"></path><path fill="#FE9DC2" d="M10.75 0a6.357 6.357 0 100 12.715A6.357 6.357 0 0010.75 0zm0 10.368a4.01 4.01 0 110-8.021 4.01 4.01 0 010 8.021z"></path><path fill="#FC488D" d="M10.157 2.391a4.01 4.01 0 100 7.934 4.011 4.011 0 010-7.934zM10.75 0c-.2 0-.398.01-.593.028a6.358 6.358 0 010 12.66A6.357 6.357 0 1010.75 0z"></path>
+							</svg> Nữ</label>
+						<input type="radio" class="btn-check" value="Male" name="sex" id="Nam" autocomplete="off" required >
+						<label class="btn btn-outline-primary" for="Nam">
+							<svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" fill="none" viewBox="0 0 21 20">
+								<g clip-path="url(#svg-0.696211286499449)"><path fill="#45A4FF" d="M11.203 7.633l1.914 1.914 6.397-6.397L17.6 1.235l-6.397 6.398z"></path><path fill="#45A4FF" d="M8.083 5.334a7.333 7.333 0 100 14.667 7.333 7.333 0 000-14.667zm0 11.96a4.626 4.626 0 110-9.253 4.626 4.626 0 010 9.252z"></path><path fill="#2D87F3" d="M7.508 8.077a4.626 4.626 0 100 9.181 4.627 4.627 0 010-9.181zM8.083 5.334a7.43 7.43 0 00-.575.022 7.334 7.334 0 010 14.622 7.333 7.333 0 10.575-14.644zM19.88 2.785v-.78L18.744.872h-.78l-2.707 2.707h1.55c.2 0 .364.163.364.365v1.55l2.707-2.708z"></path><path fill="#45A4FF" d="M18.043 0h-4.585a.365.365 0 00-.364.365v1.978c0 .201.163.364.364.364h4.22c.201 0 .365.163.365.365v4.22c0 .2.163.364.364.364h1.978a.365.365 0 00.365-.364V.365A.365.365 0 0020.385 0h-2.342z"></path></g><defs><clipPath id="svg-0.696211286499449"><path fill="#fff" d="M0 0H20V20H0z" transform="translate(.75)"></path></clipPath></defs>
+							</svg> Nam</label>
+					</div>
+				</div>
+				<div class="row mb-3">
+				    <label for="inputAge" class="col-sm-2 col-form-label">Bạn bao nhiêu tuổi</label>
+				    <div class="col-sm-10"> 
+						{{form.age}}
+				    </div>
+				</div>
+				<div class="row mb-3">
+				    <label for="inputWeight" class="col-sm-2 col-form-label">Cân nặng của bạn (kg)</label>
+				    <div class="col-sm-10">
+				      {{form.weight}}
+				    </div>
+				</div>
+				<div class="row mb-3">
+				    <label for="inputHeight" class="col-sm-2 col-form-label">Chiều cao của bạn (cm)</label>
+				    <div class="col-sm-10">
+				      {{form.height}}
+				    </div>
+				</div>
+				<div class="row mb-3">
+				    <label for="inputExertionIntensity" class="col-sm-2 col-form-label">Cường độ vận động trong tuần</label>
+				    <div class="col-sm-10">
+				    	{{form.exertion_intensity}}
+				    </div>
+				</div>
+				  <button type="submit" class="btn btn-primary">Calculate</button>
+			</form>
+			<div class="row mb-3 mt-3">
+			   <label for="outputCalo" class="col-sm-2 col-form-label">Calo trung bình mỗi ngày</label>
+			   <div class="col-sm-10">
+			     <h4 id="outputCalo">{{ AMR }} calories</h4>
+			   </div>
+			 </div>
+		</div>
+		{% include 'calculator/info_caloperday.html' %}
+	</div>
+	{% endblock %}

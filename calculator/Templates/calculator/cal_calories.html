@@ -1,0 +1,51 @@
+{% extends 'WebHealth/base.html' %}
+
+	{% block title %}
+		Calo Thực Phẩm
+	{% endblock %}
+
+	{% block content %}
+	<div class="container mt-4">
+		<div>
+			<h1>Calo trong thực phẩm</h1>
+		</div>
+		<div>
+			<form class="cal mt-4" method="post">
+			{% csrf_token %}
+			  <div class="row mb-3">
+			    <label for="inputNameFood" class="col-sm-2 col-form-label">Name of Food</label>
+			    <div class="col-sm-10"> 
+					<select name ="current_food" class="form-select" aria-label="Default select example" id="inputNameFood">
+				  		<option selected>Chose type of food</option>
+				  		{% for item in data %}
+				  		<option value="{{ item.id }}">{{ item.name_food }}</option>
+				  		{% endfor %}
+					</select>
+			    </div>
+			  </div>
+			  <div class="row mb-3">
+			    <label for="inputQuanlity" class="col-sm-2 col-form-label">Quanlity</label>
+			    <div class="col-sm-10">
+			      <input name = "quantity_g" type="text" class="form-control" id="inputQuanlity">
+			    </div>
+			  </div>
+			 	<div class="al mb-3 mt-3">
+			 		{% include 'calculator/messages.html' %}
+			 	</div>
+			  <button type="submit" class="btn btn-primary">Calculate</button>
+			</form>
+			<div class="row mb-3 mt-3">
+			   <label for="outputCalo" class="col-sm-2 col-form-label">Calo in this food</label>
+			   <div class="col-sm-10">
+			     <h4 id="outputCalo">{{ current_calo }} calories</h4>
+			   </div>
+			 </div>
+		</div>
+		<div>
+			<p class="fst-italic">
+				Công cụ tính calories trong thức ăn – Phương pháp nạp calories khoa học
+			</p>
+		</div>
+		{% include 'calculator/info_calofood.html' %}
+	</div>
+	{% endblock content %}

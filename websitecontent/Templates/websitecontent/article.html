@@ -1,0 +1,13 @@
+{% extends 'WebHealth/base.html' %}
+
+	{% block title %}
+		Article Detail
+	{% endblock %}
+
+	{% block content %}
+		<div class="container">
+			<div>
+				{{ d.content|safe }}
+			</div>
+		</div>
+	{% endblock %}

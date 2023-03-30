@@ -1,0 +1,33 @@
+{% extends 'WebHealth/base.html' %}
+
+	{% block title %}
+		Bài Báo Mới
+	{% endblock %}
+
+	{% block content %}
+		<div class="container Blogs pt-3">
+			<h1 class="mb-3">Bài báo hay</h1>
+			<center>
+				<div class="row">
+					{% for item in data %}
+					<div class="col-sm-4">
+						<div class="card" style="width: 18rem;">
+							<img class="card-img-top" src="{{ item.image_url }}" alt="">
+							<div class="card-body">
+								<h5 class="card-title">{{ item.title }}</h5>
+								<p class="card-text">{{ item.sub_title }}</p>
+							</div>
+							<ul class="list-group list-group-flush">
+						    	<li class="list-group-item">Tác Giả: {{ item.author }}</li>
+						    	<li class="list-group-item">Ngày đăng: {{ item.pub_date }}</li>
+							</ul>
+							<div class="card-body">
+						    	<a href="{% url 'nameArticleDetail' item.post_name % }" class="card-link" style="text-decoration: none">Chi tiết</a>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</center>
+		</div>
+	{% endblock %}

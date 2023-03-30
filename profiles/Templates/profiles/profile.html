@@ -1,0 +1,121 @@
+{% extends 'WebHealth/base.html' %}
+    {% block title %}
+        Your Profile
+    {% endblock %}
+    {% block content %}
+    <div class="container">
+        <div class="row">
+            <div style="width: 100%;">
+                <h1>Profile của bạn</h1>
+            </div>
+            
+            <!-- trái -->
+            <div class="col-sm-4">
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <p><strong>Thông tin tài khoản</strong></p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Tên tài khoản: {{ user.username }}</li>
+                        <li class="list-group-item">Địa chỉ Email: {{ user.email }}</li>
+                        <li class="list-group-item">Ngày đăng ký: {{ user.date_joined }}</li>
+                        <li class="list-group-item">Họ tên: {{ user.full_name }}</li>
+                        <li class="list-group-item">Địa chỉ: {{ user.address }}</li>
+                        <li class="list-group-item">Năm sinh: {{ user.year_birth }}</li>
+                    </ul>
+                </div>
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <p><strong>Calo ngày hôm nay</strong></p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <a href="{% url 'nameAddCaloToday' %}"><button type="button" class="btn btn-info" style="width: 100%;">Nhấn vào đây để thêm</button></a>
+                    </ul>
+                </div>
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <p><strong>Tạo Blogs</strong></p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <a href="{% url 'nameAddBlogs' %}"><button type="button" class="btn btn-info" style="width: 100%;">Tạo blogs tại đây</button></a>
+                    </ul>
+                </div>
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <p><strong>Cập nhập thông tin</strong></p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <a href="{% url 'nameUpdateProfile' %}"><button type="button" class="btn btn-info" style="width: 100%;">Cập nhập tại đây</button></a>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- phải -->
+            <div class="col-sm-6">
+                <div>
+                    <h5>Biểu đồ calo của bạn</h5>
+                </div>
+                <div class="bg-white">
+                    <canvas id="densityChart" width="100%" height="100%"></canvas>
+                    <script>
+                      const ctx = document.getElementById('densityChart');
+                      var barColors ="red";
+
+                      new Chart(ctx, {
+                        data: {
+                          labels: [{% for i in datetime %} '{{ i }}', {% endfor %}],
+                          datasets: [
+                          {
+                            type: 'bar',
+                            label: 'Calo In',
+                            data: [{% for i in caloin %} '{{ i }}', {% endfor %}],
+                            backgroundColor: '#9BD0F5',
+                            borderWidth: 1
+                          },
+                          {
+                            type: 'bar',
+                            label: 'Calo Out',
+                            data: [{% for i in caloout %} '{{ i }}', {% endfor %}],
+                            backgroundColor: '#FFB1C1',
+                            borderWidth: 1
+                          },
+                          {
+                            type: 'line',
+                            label: 'Calo In',
+                            data: [{% for i in caloin %} '{{ i }}', {% endfor %}],
+                            fill: false,
+                            borderColor: 'rgb(0, 0, 255)',
+                            tension: 0.1
+                          },
+                          {
+                            type: 'line',
+                            label: 'Calo Out',
+                            data: [{% for i in caloout %} '{{ i }}', {% endfor %}],
+                            fill: false,
+                            borderColor: 'rgb(255, 128, 0)',
+                            tension: 0.1
+                          }
+                          ]
+                        },
+                        options: {
+                            barValueSpacing: 20,
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true,
+                                    }
+                                }],
+                                xAxes: [{
+                                    ticks: {
+                                        display: false,
+                                    }
+                                }]
+                            }
+                        }
+                      });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}

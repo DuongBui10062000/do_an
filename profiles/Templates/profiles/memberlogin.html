@@ -1,0 +1,21 @@
+{% extends 'WebHealth/base.html' %}
+	{% block title %}
+		Đăng Nhập
+	{% endblock %}
+	{% block content %}
+	<div class="container">
+  			<center>
+  				<div class="card w-50 mt-5">
+						<form class="row g-3" method="post">
+							{% csrf_token %}
+							<h3>MEMBER LOGIN</h3>
+						  	{{ form.as_p }}
+						  	<div class="col-12">
+						    	<button type="submit" class="btn btn-primary">Sign in</button>
+						  	</div>
+						</form>
+  				</div>
+  			</center>
+	</div>
+	{% endblock %}
+  
